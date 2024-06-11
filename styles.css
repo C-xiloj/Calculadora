@@ -1,0 +1,222 @@
+/* Estilos generales */
+body {
+    background: linear-gradient(to bottom, #FFEB99, #A0522D);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.calculator-image {
+    display: block;
+    width: 60%; /* Tamaño ajustado al 60% del tamaño original */
+    height: auto; /* Mantiene la proporción */
+}
+
+.image-container {
+    display: block;
+    padding-top: 250px;
+    position: absolute;
+    right: 30px; /* Mover la imagen más a la derecha */
+}
+
+.background-images {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca las imágenes detrás del contenido principal */
+}
+
+.background-image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+    opacity: 0.3; /* Ajusta la opacidad según desees */
+    z-index: -1; /* Coloca las imágenes detrás del contenido principal */
+}
+
+.calculator {
+    position: relative;
+    width: 600px; /* Aumentar el ancho para un diseño más espacioso */
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+.calculator::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.425); /* Incrementar la opacidad */
+    z-index: 0;
+}
+
+.display, #display {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 20px; /* Aumentar el margen inferior para más espacio */
+    text-align: right;
+    padding: 15px;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5em;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Añadir espacio entre las secciones */
+}
+
+.numbers, .operators, .functions {
+    display: grid;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.numbers {
+    grid-template-columns: repeat(3, 1fr);
+    width: 40%; /* Ajustar el ancho para más espacio */
+}
+
+.operators {
+    grid-template-columns: 1fr;
+    width: 15%; /* Ajustar el ancho para más espacio */
+    margin: 0 15px; /* Espaciado entre operadores y otros botones */
+}
+
+.functions {
+    grid-template-columns: repeat(2, 1fr);
+    width: 35%; /* Ajustar el ancho para más espacio */
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Añadir borde claro */
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3); /* Reducir transparencia */
+    color: white;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+    box-shadow: none;
+}
+
+button.span-two {
+    grid-column: span 2;
+}
+
+/* Estilos específicos para los botones de operadores */
+button.operator {
+    background-color: rgba(255, 165,0, 0.8); /* Color naranja para destacar */
+    font-size: 1.3em; /* Tamaño de fuente ligeramente mayor */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Borde más claro */
+}
+
+
+button.operator:hover {
+    background-color: rgba(255, 165, 0, 1); /* Aumentar la opacidad en hover */
+}
+
+/* Estilos específicos para los botones de funciones */
+button.function {
+    background-color: rgba(30, 144, 255, 0.8); /* Color azul para destacar */
+    font-size: 1.1em; /* Tamaño de fuente */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Borde más claro */
+}
+
+button.function:hover {
+    background-color: rgba(30, 144, 255, 1); /* Aumentar la opacidad en hover */
+}
+
+/* Media Query para dispositivos móviles */
+@media screen and (max-width: 600px) {
+    .calculator {
+        width: 90%; /* Ajustar el ancho para dispositivos móviles */
+        max-width: none; /* Eliminar el ancho máximo */
+    }
+
+    .calculator-image, .image-container, .background-images {
+        display: none; /* Ocultar la imagen en dispositivos móviles */
+    }
+
+    .calculator::before {
+        border-radius: 0; /* Eliminar el radio de borde */
+    }
+
+    .button-container {
+        flex-wrap: wrap; /* Permitir que los botones se envuelvan en dispositivos móviles */
+    }
+
+    .numbers, .operators, .functions {
+        width: 100%; /* Ocupa todo el ancho disponible */
+    }
+
+    .numbers, .functions {
+        grid-template-columns: repeat(3, 1fr); /* Mostrar 3 botones por fila */
+    }
+
+    .operators {
+        grid-template-columns: repeat(2, 1fr); /* Mostrar 2 botones por fila */
+    }
+
+    button {
+        height: 40px; /* Reducir la altura de los botones */
+        font-size: 1em; /* Tamaño de fuente base */
+    }
+
+    /* Estilos específicos para los botones de operadores */
+    button.operator {
+        font-size: 1.1em; /* Tamaño de fuente */
+    }
+
+    /* Estilos específicos para los botones de funciones */
+    button.function {
+        font-size: 0.9em; /* Tamaño de fuente */
+    }
+
+    .numbers, .operators, .functions {
+        gap: 3px; /* Reducir el espacio entre los botones */
+    }
+
+    .button-container {
+        gap: 5px; /* Ajuste de espacio entre los botones */
+    }
+}
